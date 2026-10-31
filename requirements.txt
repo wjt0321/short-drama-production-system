@@ -1,0 +1,4 @@
+# 仅供 tools/ 下的检查闸使用；体系文档本身不依赖任何第三方库。
+# 安装：pip install -r requirements.txt
+PyYAML>=6.0
+numpy>=1.24

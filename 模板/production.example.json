@@ -1,0 +1,15 @@
+{
+  "route": "historical_life",
+  "status": "draft",
+  "creative": {
+    "promise": "",
+    "visual_proof": "",
+    "silent_test": "",
+    "deletion_test": ""
+  },
+  "creative_review": null,
+  "assets": [],
+  "shots": [],
+  "final": null,
+  "delivery_review": null
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "name": "short-drama-production-system",
+  "display_name": "短剧成片体系",
+  "description": "通用 Agent 的短剧与短片生产路由；全权委托自主制作，阶段审核按授权启用，具体实现按能力登记适配。",
+  "entry": "SKILL.md",
+  "protocol": "AGENTS.md",
+  "locale": "zh-CN",
+  "content_type": "agent-skill",
+  "tool_binding": "none",
+  "loading": {
+    "default": [
+      "SKILL.md",
+      "skill-manifest.json"
+    ],
+    "route": [
+      "从这里开始.md"
+    ],
+    "end_to_end": [
+      "AGENTS.md",
+      "07-端到端管线/生产证据与片型路线.md"
+    ],
+    "current_gate_only": true,
+    "project_state_file": "项目状态摘要.md",
+    "full_library_default": false,
+    "capability_registry": "能力登记.md",
+    "resume": [
+      "项目状态摘要.md",
+      "执行清单.md"
+    ],
+    "project_capability_registry": "00-立项/能力登记.md",
+    "on_demand_only": "研究档、适配资料、历史项目与归档不默认加载，由路由按需引入；默认加载集只含轻量入口"
+  },
+  "decision_policy": {
+    "default": "agent_decides_and_logs",
+    "uncertain": "agent_selects_recommended_option",
+    "human_decision_required": [
+      "spending_or_budget_expansion",
+      "external_send_or_publish",
+      "private_asset_upload",
+      "irreversible_change",
+      "truly_incompatible_direction_conflict"
+    ],
+    "optional_human_review": true,
+    "execution_details": "agent_decides_and_logs"
+  },
+  "gates": [
+    "G0",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6"
+  ],
+  "id": "short-drama-production-system",
+  "scope": [
+    "short-drama",
+    "motion-comic",
+    "narrative-short-video"
+  ],
+  "execution_policy": {
+    "director_preflight": {
+      "trigger": "Any filmmaking request, including a topic-only brief; related single-stage tasks and resumed work check the affected scope.",
+      "rule_file": "07-端到端管线/生产证据与片型路线.md",
+      "rule_section": "主动导演判断与前置风险预检",
+      "proactive_method_lookup": true,
+      "before_dependent_batch_investment": true,
+      "notify_on_critical_unknown_or_incompatibility": true,
+      "scope": "affected_work_only",
+      "autonomous_mode_exempt": false,
+      "requires_new_approval_chain": false
+    },
+    "taste_check": {
+      "trigger": "Any filmmaking request; G3 before finalizing and G4 every 2-3 shots, G6 on full playback.",
+      "rule_file": "02-分镜与镜头/导演品位与理论底座.md",
+      "purpose": "反中庸：把平庸拆成可指认的画面事实，避免'哪儿都对、哪儿都没劲'。",
+      "judges_only": true,
+      "invents_style": false,
+      "on_fail": "AGENTS.md failing-retry-chain",
+      "evidence_required": "保留理由；'说不上来哪里不对'记为未检查，不算通过",
+      "replaces_machine_checks": false
+    },
+    "blocking_check": {
+      "trigger": "Any shot needing camera placement, blocking, axis/eyeline or coverage order; included in the default director preflight.",
+      "rule_file": "02-分镜与镜头/机位与运镜.md",
+      "covers": [
+        "camera_height_distance_angle",
+        "180_degree_axis_and_eyeline_pairing",
+        "character_distance_and_blocking",
+        "coverage_order_risk_first"
+      ],
+      "aspect_default": "16:9 横屏（权威见 导演视觉圣经.md 画幅默认）；9:16 竖幅为备选分支，其修正仅竖幅项目启用",
+      "lands_in": "分镜表既有 '画面内容' / '运镜' 列与首帧；不新增列",
+      "new_columns": false
+    },
+    "theory_basis": {
+      "trigger": "No usable local reference exists, or a director judgment must be made without one; also during the director preflight.",
+      "rule_file": "02-分镜与镜头/导演品位与理论底座.md",
+      "purpose": "无参考时的推导支柱与判断分级，防止把推断写成事实。",
+      "grading": "已核实 / 推断 / 假定 / 待查证",
+      "sources_own_adaptation": true,
+      "no_url_repos": true
+    }
+  },
+  "project_layout": {
+    "root": "00-视频项目",
+    "relative_to": "system_root",
+    "directory_pattern": "《片名》",
+    "template": "模板/短剧项目模板",
+    "rules": "AGENTS.md",
+    "all_video_projects_required": true,
+    "outputs_within_project": true
+  },
+  "aspect_ratio": {
+    "authority": "导演视觉圣经.md 画幅默认",
+    "default": "16:9",
+    "default_orientation": "landscape",
+    "alternate": "9:16",
+    "alternate_orientation": "portrait",
+    "switch_when": "目标平台为竖屏平台（抖音/快手/红果等），或用户明确要求；未指定时一律 16:9，不询问、不默认竖屏",
+    "is_swappable_reference": true,
+    "scales_with_aspect": [
+      "主体占画面宽度与留白方向",
+      "景别分布与远景可用度",
+      "字幕安全区与字号",
+      "暗角强度",
+      "运动方向偏好（横移 vs 纵深/升降）",
+      "多人同框与横向排布可行性",
+      "故事板与九宫格比例"
+    ],
+    "invariant_across_aspect": [
+      "轴线 180° 规则与越轴四法",
+      "视线配对铁律",
+      "机位高度叙事语义",
+      "人际距离语义与站位逻辑",
+      "焦段语义、色彩脚本、表演逻辑",
+      "剧情因果、钩子与节奏",
+      "声音设计"
+    ]
+  }
+}

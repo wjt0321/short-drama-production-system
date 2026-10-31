@@ -1,0 +1,12 @@
+{
+  "id": "CASE001",
+  "source": "",
+  "source_file": "references/source.png",
+  "known_conditions": "unknown",
+  "borrowed_structure": "",
+  "keep": [],
+  "allowed_changes": [],
+  "applicability": "",
+  "failure_points": [],
+  "shot_ids": []
+}

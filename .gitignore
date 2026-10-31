@@ -1,0 +1,24 @@
+# 检查脚本的缓存和本机产物不进版本库
+__pycache__/
+*.pyc
+*.pyo
+.perf_tmp/
+*.tmpc
+*.log
+
+# 密钥与登录态
+*.env
+cookies*.txt
+*state*.json
+
+# 编辑器
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 私人项目、归档和发布构建只留在本机
+/00-视频项目/
+/_归档/
+/_release/
+/.superpowers/
