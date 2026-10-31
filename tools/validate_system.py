@@ -11,6 +11,7 @@ PROJECT_TEMPLATE = ROOT/'模板'/'短剧项目模板'
 # `_归档/` 是已封存的历史项目与调研原始件（与 `00-视频项目/` 同级性质）：
 # 里面必然带第三方仓库的 README、B 站元数据 JSON、旧版 HTML，全是外链与历史路径。
 # 它不是运行时文档，按「归档不参与在制自检」处理；不排除就会把整库结构校验拖红。
+# `.superpowers/` 是本地技能会话暂存，治理见 AGENTS.md §六，不是运行时 SOP。
 EXCLUDED_DIRS = {'.git', 'docs', '00-视频项目', '_归档',
                  '_release', 'archive', '.superpowers'}
 errors=[]

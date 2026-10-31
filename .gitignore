@@ -21,4 +21,6 @@ Thumbs.db
 /00-视频项目/
 /_归档/
 /_release/
+
+# 本地技能与会话工作区。用途与治理见 AGENTS.md §六，不进入版本库
 /.superpowers/
