@@ -47,6 +47,7 @@ SYSTEM_ROOT = os.path.dirname(HERE)
 
 FAIL_MARK_RE = re.compile(r"##\s*失败裁决")
 
+from _art_exception import waiver_note
 from _film_gate_waivers import load_waivers, is_waived
 from _film_type import read_film_type
 
@@ -519,6 +520,12 @@ def audit_all():
             continue
         findings = build_findings(res)
         hard = [f for f in findings if f["判定"] in ("超标", "偏长", "偏短")]
+        still_note = waiver_note(p, "静止比例")
+        if still_note.startswith("艺术破例生效"):
+            hard = [f for f in hard if f["项"] not in ("静止机位占比", "最长连续静止段")]
+            print("    · {}".format(still_note))
+        elif still_note:
+            print("    · {}".format(still_note))
         wvd = bool(hard) and is_waived(waivers, name, GATE)
         if wvd:
             tag = "WAIVED（{} 条超标，已登记豁免）".format(len(hard))

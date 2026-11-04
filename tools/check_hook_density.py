@@ -35,6 +35,7 @@ SYSTEM_ROOT = os.path.dirname(HERE)
 
 FAIL_MARK_RE = re.compile(r"##\s*失败裁决")
 
+from _art_exception import waiver_note
 from _film_gate_waivers import load_waivers, is_waived, tally_line
 from _film_type import read_film_type
 
@@ -183,6 +184,12 @@ def analyse(proj):
             "expression-beat / setup 单独撑尾".format(rows[-1][0], vals[-1]))
     elif vals and film_type == "意象" and vals[-1]:
         facts["意象片收尾"] = "允许余味式 hook：" + vals[-1]
+    note = waiver_note(proj, "hook收尾")
+    if note.startswith("艺术破例生效"):
+        problems = [item for item in problems if not item.startswith("⑥")]
+        facts["艺术破例"] = note
+    elif note:
+        facts["艺术破例"] = note
     return problems, facts
 
 
