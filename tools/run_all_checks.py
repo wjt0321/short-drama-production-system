@@ -377,6 +377,9 @@ def main():
     gates.append(("成片剪用-真片",
                   [sys.executable, os.path.join(HERE, "check_assembly_usage.py")],
                   True))
+    gates.append(("种子活到成片-真片",
+                  [sys.executable, os.path.join(HERE, "check_seed_survival.py")],
+                  True))
 
     # —— 以下为校验器自身的反例回归（selftest）——
     # 真片扫描在上面三道已经常驻；这里再各跑一遍 selftest，防的是
@@ -444,6 +447,9 @@ def main():
     gates.append(("复盘回写-selftest",
                   [sys.executable, os.path.join(HERE, "check_retro_writeback.py"),
                    "--selftest"], True))
+    gates.append(("种子活到成片-selftest",
+                  [sys.executable, os.path.join(HERE, "check_seed_survival.py"),
+                   "--selftest"], True))
     gates.append(("H3参考参数-selftest",
                   [sys.executable, os.path.join(HERE, "h3_ref_validator.py"),
                    "--selftest"], True))
@@ -485,6 +491,8 @@ def main():
         "G3成立性校验器自身回归": "G3成立性-selftest",
         "复盘回写（结论→文件:行）": "复盘回写-真片",
         "复盘回写校验器自身回归": "复盘回写-selftest",
+        "种子活到成片（物件或话语还在画面里）": "种子活到成片-真片",
+        "种子活到成片校验器自身回归": "种子活到成片-selftest",
         "H3参考参数（17k+5/9图/3视频/5s-10s）": "H3参考参数-selftest",
     }
     have = set(g[0] for g in gates)

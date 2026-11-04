@@ -32,6 +32,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYSTEM_ROOT = os.path.dirname(HERE)
 
+from _art_exception import waiver_note  # noqa: E402
 from _film_gate_waivers import is_waived, load_waivers  # noqa: E402
 from _film_type import read_film_type  # noqa: E402
 
@@ -382,6 +383,12 @@ def evaluate_project(project, ffmpeg=None, ffprobe=None):
                     continue
                 ratio, run, n_shots = classify_shots(diffs)
                 problems = pixel_problems(ratio, run, n_shots, film_type)
+                still_note = waiver_note(project, "静止比例")
+                if problems and still_note.startswith("艺术破例生效"):
+                    messages.append("{}：{}".format(os.path.basename(video), still_note))
+                    problems = []
+                elif still_note and not still_note.startswith("艺术破例生效"):
+                    messages.append("{}：{}".format(os.path.basename(video), still_note))
                 if problems:
                     failed = True
                     messages.extend("{}：{}".format(os.path.basename(video), item) for item in problems)

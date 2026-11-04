@@ -42,6 +42,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYSTEM_ROOT = os.path.dirname(HERE)
 
+from _art_exception import exception_gate, waiver_note
 from _film_gate_waivers import load_waivers, is_waived, tally_line
 
 GATE = "风格锁-真片"
@@ -212,15 +213,43 @@ def analyse(proj):
     needle = norm(lock)
     anchor = norm(anchor_of(lock))
     anchor_ok = len(re.sub(r"\s+", "", anchor)) >= MIN_ANCHOR_CHARS
-    missing, missing_anchor = [], []
+    color_free = exception_gate(proj) == "色彩情绪"
+    color_note = waiver_note(proj, "色彩情绪")
+    kept_clauses = []
+    if color_free:
+        kept_clauses = [
+            norm(part) for part in re.split(r"[。；;]", lock)
+            if part.strip() and not re.search(r"情绪尺度|主色|点缀色", part)
+        ]
+        kept_clauses = [part for part in kept_clauses if part]
+        if re.search(r"情绪尺度|主色|点缀色", anchor_of(lock)):
+            problems.append(
+                "色彩情绪破例时，风格锁第一句要留给渲染或造型，不要把情绪尺度写在第一句")
+        if count_lock_chars("".join(kept_clauses)) < MIN_LOCK_CHARS:
+            problems.append(
+                "色彩情绪破例之后，风格锁里还得留下身份、材质和渲染")
+    missing, missing_anchor, missing_color = [], [], []
+    shot_colors = []
     for fp in prompt_files:
         body = open(fp, encoding="utf-8", errors="replace").read()
         nbody = norm(body)
+        rel = os.path.relpath(fp, proj)
+        if color_free:
+            if is_ref_mode(body):
+                if not (anchor_ok and anchor in nbody):
+                    missing_anchor.append(rel)
+            elif any(part not in nbody for part in kept_clauses):
+                missing.append(rel)
+            color_match = re.search(r"本镜光色[:：]\s*(\S.{7,})", body)
+            if not color_match:
+                missing_color.append(rel)
+            else:
+                shot_colors.append(norm(color_match.group(1)))
+            continue
         if needle in nbody:
             continue
         if is_ref_mode(body) and anchor_ok and anchor in nbody:
             continue  # 图生/多参考：风格由参考图承担，锚句在场即可
-        rel = os.path.relpath(fp, proj)
         (missing_anchor if is_ref_mode(body) else missing).append(rel)
     if missing:
         problems.append("{} 个文生模式提示词缺风格锁原文：{}".format(
@@ -230,9 +259,18 @@ def analyse(proj):
         problems.append("{} 个图生/多参考提示词缺风格锚句（锁的第一句）：{}".format(
             len(missing_anchor), "、".join(missing_anchor[:3]) +
             (" …" if len(missing_anchor) > 3 else "")))
-    return problems, {"锁字数": lock_n, "提示词文件数": len(prompt_files),
-                      "有锁": True, "缺注入": len(missing) + len(missing_anchor),
-                      "指针跳过": len(skipped_ptrs)}
+    if missing_color:
+        problems.append("{} 个提示词启用了色彩情绪破例，但没有本镜光色：{}".format(
+            len(missing_color), "、".join(missing_color[:3]) +
+            (" …" if len(missing_color) > 3 else "")))
+    if color_free and len(shot_colors) >= 2 and len(set(shot_colors)) == 1:
+        problems.append("本镜光色各条相同，破例没有让这一镜的光和颜色离开全局锁")
+    facts = {"锁字数": lock_n, "提示词文件数": len(prompt_files),
+             "有锁": True, "缺注入": len(missing) + len(missing_anchor) + len(missing_color),
+             "指针跳过": len(skipped_ptrs)}
+    if color_note:
+        facts["艺术破例"] = color_note
+    return problems, facts
 
 
 def _is_archived(proj):
