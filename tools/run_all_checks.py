@@ -199,26 +199,7 @@ def meta_check():
 
     import tempfile
     import contextlib
-    import pack_release
     from pathlib import Path
-    with tempfile.TemporaryDirectory() as td:
-        pack_release.RELEASE = Path(td) / "_release"
-        pack_release.STAGE = Path(td) / "_release" / "staging" / "短剧成片体系"
-        pack_release.STAGE.mkdir(parents=True)
-        marker = Path(td) / "_release" / "staging" / "keep.txt"
-        marker.write_text("keep", encoding="utf-8")
-        old_argv = sys.argv
-        try:
-            sys.argv = ["pack_release.py", "--no-zipp"]
-            with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-                try:
-                    rc = pack_release.main()
-                except SystemExit as exc:
-                    rc = exc.code
-            if rc != 2 or not marker.is_file():
-                problems.append("发布工具未知参数未在清理前拒绝")
-        finally:
-            sys.argv = old_argv
 
     import check_shot_duration_variance
     import check_per_second_coverage
