@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "name": "short-drama-production-system",
+  "display_name": "短剧成片体系",
+  "description": "通用 Agent 的短剧与短片生产路由；全权委托自主制作，阶段审核按授权启用，具体实现按能力登记适配。",
+  "entry": "SKILL.md",
+  "protocol": "AGENTS.md",
+  "locale": "zh-CN",
+  "content_type": "agent-skill",
+  "tool_binding": "none",
+  "loading": {
+    "default": [
+      "SKILL.md",
+      "skill-manifest.json"
+    ],
+    "route": [
+      "从这里开始.md"
+    ],
+    "end_to_end": [
+      "AGENTS.md",
+      "通用Agent短剧生产规范.md",
+      "07-端到端管线/生产证据与片型路线.md"
+    ],
+    "current_gate_only": true,
+    "project_state_file": "项目状态摘要.md",
+    "full_library_default": false,
+    "capability_registry": "能力登记.md",
+    "resume": [
+      "项目状态摘要.md",
+      "执行清单.md"
+    ],
+    "project_capability_registry": "00-立项/能力登记.md"
+  },
+  "decision_policy": {
+    "uncertain": "offer_candidates",
+    "candidate_count": {
+      "min": 2,
+      "max": 4
+    },
+    "human_decision_required": [
+      "style",
+      "narrative_direction",
+      "budget",
+      "compliance",
+      "irreversible_change"
+    ],
+    "execution_details": "agent_decides_and_logs"
+  },
+  "gates": [
+    "G0",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6"
+  ],
+  "id": "short-drama-production-system",
+  "scope": [
+    "short-drama",
+    "motion-comic",
+    "narrative-short-video"
+  ]
+}

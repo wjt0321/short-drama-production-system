@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "name": "short-drama-production-system",
+  "display_name": "短剧成片体系",
+  "description": "通用 Agent 使用的短剧、漫剧和剧情型短片生产 SKILL；支持 G0-G6 审核、候选决策和渐进式加载。",
+  "entry": "SKILL.md",
+  "protocol": "AGENTS.md",
+  "locale": "zh-CN",
+  "content_type": "agent-skill",
+  "tool_binding": "none",
+  "loading": {
+    "default": [
+      "SKILL.md",
+      "skill-manifest.json"
+    ],
+    "route": [
+      "从这里开始.md"
+    ],
+    "end_to_end": [
+      "AGENTS.md",
+      "通用Agent短剧生产规范.md",
+      "01-创意与剧本/AI短片全链路流水线.md"
+    ],
+    "current_gate_only": true,
+    "project_state_file": "项目状态摘要.md",
+    "full_library_default": false,
+    "capability_registry": "能力登记.md"
+  },
+  "decision_policy": {
+    "uncertain": "offer_candidates",
+    "candidate_count": {
+      "min": 2,
+      "max": 4
+    },
+    "human_decision_required": [
+      "style",
+      "narrative_direction",
+      "budget",
+      "compliance",
+      "irreversible_change"
+    ],
+    "execution_details": "agent_decides_and_logs"
+  },
+  "gates": [
+    "G0",
+    "G1",
+    "G2",
+    "G3",
+    "G4",
+    "G5",
+    "G6"
+  ],
+  "id": "short-drama-production-system",
+  "scope": [
+    "short-drama",
+    "motion-comic",
+    "narrative-short-video"
+  ]
+}

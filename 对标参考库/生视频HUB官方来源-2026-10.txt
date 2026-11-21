@@ -1,0 +1,33 @@
+﻿Research source index, retrieved 2026-10-05
+S01 Runway Gen-4 prompting guide
+https://help.runwayml.com/hc/en-us/articles/39789879462419-Gen-4-Video-Prompting-Guide
+S02 Kling text-to-video prompt guide
+https://kling.ai/quickstart/text-to-video-prompt-guide
+S03 Kling Video 3 model guide
+https://kling.ai/quickstart/klingai-video-3-model-user-guide
+S04 Luma Dream Machine best practices
+https://lumalabs.ai/learning-hub/best-practices
+S05 Pika FAQ
+https://pika.art/faq
+S06 Google Veo 3.1 prompting guide
+https://cloud.google.com/blog/products/ai-machine-learning/ultimate-prompting-guide-for-veo-3-1
+S07 OpenAI Sora 2 prompting guide (archived cookbook; verify current availability)
+https://developers.openai.com/cookbook/examples/sora/sora2_prompting_guide
+S08 Adobe Firefly video prompting
+https://helpx.adobe.com/firefly/web/work-with-audio-and-video/work-with-video/writing-effective-text-prompts-for-video-generation.html
+S09 PixVerse text-to-video docs
+https://docs.platform.pixverse.ai/text-to-video-882970m0
+S10 Vidu video prompt guide
+https://help.aliyun.com/zh/model-studio/vidu-video-generation-prompt-guide
+S11 MiniMax video prompt guide
+https://platform.minimax.io/docs/guides/video-prompt
+S12 MiniMax Hailuo start/end frames
+https://www.minimax.io/news/minimax-hailuo-02-start-end-frames-feature-is-now-live
+S13 Seedance 2.5 official case
+https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5
+S14 Seedance 1.0 technical report
+https://seed.bytedance.com/blog/tech-report-of-seedance-1-0-is-now-publicly-available
+S15 ComfyUI official workflow templates
+https://github.com/Comfy-Org/workflow_templates
+S16 ComfyUI official tutorials
+https://docs.comfy.org/tutorials/

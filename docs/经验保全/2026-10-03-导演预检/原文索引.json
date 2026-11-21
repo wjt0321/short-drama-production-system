@@ -1,0 +1,54 @@
+[
+  {
+    "file": "SKILL.md",
+    "sha256": "eaa6dc7e4a55b2ce7fd672a3b83152bcdd9fa680ee61994470060db3fecad82c"
+  },
+  {
+    "file": "skill-manifest.json",
+    "sha256": "af573324908c933178d683d23905d048d2de0f5ae207e2dc36b833515c8c3c0e"
+  },
+  {
+    "file": "AGENTS.md",
+    "sha256": "e5c970f0eda28de948bbc719ccf6c8c2d5b4b34aa51640103819135462e42513"
+  },
+  {
+    "file": "从这里开始.md",
+    "sha256": "8ad21792a2b8838266c253395b1b3d324720d828a299a817f57475b18007d457"
+  },
+  {
+    "file": "07-端到端管线/生产证据与片型路线.md",
+    "sha256": "539958d94228ac217c37c6bce66e10703a7ce93eac5ae7b582b0635ecfd60269"
+  },
+  {
+    "file": "导演视觉圣经.md",
+    "sha256": "ba24f4f7ddef4c2899bf60553da91c82fc528a7e8819d5f742cff14c4acbeda9"
+  },
+  {
+    "file": "02-分镜与镜头/分镜叙事工作流.md",
+    "sha256": "eeb66b736939d5f1100245ded179aeb9be5f1ff59b3771d49db688a65429077b"
+  },
+  {
+    "file": "模板/短剧项目模板/00-立项/风格提案.md",
+    "sha256": "dbcef7206c28de92cd4b2ce1764070e13e93c6a36a79238fc72ee6f774fd8722"
+  },
+  {
+    "file": "模板/短剧项目模板/03-分镜/分镜表.md",
+    "sha256": "d6ffdfc666a11116fec0ee52cb683587ce4c9af70685d6300b2839dec035637e"
+  },
+  {
+    "file": "模板/短剧项目模板/00-立项/能力登记.md",
+    "sha256": "43a15bbfcbbd5ab9e17a0d55aa4dc5c7402c601ec1c697348f61eb349d6bb872"
+  },
+  {
+    "file": "模板/短剧项目模板/项目状态摘要.md",
+    "sha256": "c794e705fe6c88ef8ba4b3c3cda4b88aea6de2ce091da62a401865f7ec02fbf7"
+  },
+  {
+    "file": "模板/短剧项目模板/执行清单.md",
+    "sha256": "6ba54449d6ee16e5a4eda018e7eba8357afb693922a85eba67d43fc0c8cc0e31"
+  },
+  {
+    "file": "知识库维护清单.md",
+    "sha256": "7bbb92cb4c0e631fcf7c1c4d9779a78c986b12c4543a133eeee1dcbff8446942"
+  }
+]

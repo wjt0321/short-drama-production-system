@@ -1,0 +1,15 @@
+PASS 改写前原文逐字节保全
+PASS 没有修改工具代码
+PASS 新增导演构图库保持原样
+PASS 关键通用规则与模板无被移出的品牌或档位绑定
+PASS 该检查能发现原文问题
+PASS manifest 默认与端到端路线存在
+PASS 可选自动化不在端到端必读链
+PASS 模板无预填实测日期
+PASS 原技术细节保留：minimax_h3_video_vae_int8_convrot.safetensors
+PASS 原技术细节保留：SigmaShift
+PASS 原技术细节保留：indextts.infer_v2_5
+PASS 原技术细节保留：bh_key.py
+PASS 原技术细节保留：resolution
+PASS 用户原有删除状态未变
+Preserved originals: 35
